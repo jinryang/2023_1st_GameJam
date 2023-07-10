@@ -7,8 +7,8 @@ public class Move : MonoBehaviour
     public float speed;      // 캐릭터 움직임 스피드
     public Vector2 movePoint; // 이동 위치 저장
     public Camera mainCamera; // 메인 카메라
-
-    Vector3 mousePosition;
+    bool PlayerIsMoving = false;
+    public Vector3 mousePosition;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,7 +40,6 @@ public class Move : MonoBehaviour
     }
     void MovePlayer()
     {
-        Vector2 thisUpdatePoint = (movePoint - new Vector2(transform.position.x, transform.position.y)).normalized;
         gameObject.transform.position = Vector2.MoveTowards(transform.position, movePoint, speed*Time.deltaTime);
     }
 }
