@@ -586,6 +586,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitCode: 1
   stat: {fileID: 0}
+  target: {fileID: 0}
 --- !u!58 &887177268
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -923,6 +924,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitCode: 0
   stat: {fileID: 0}
+  targetTag: 
 --- !u!61 &1783525050
 BoxCollider2D:
   m_ObjectHideFlags: 0

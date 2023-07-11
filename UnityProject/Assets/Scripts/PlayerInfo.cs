@@ -9,6 +9,7 @@ public class PlayerInfo : MonoBehaviour
     public Stat stat;
     private bool isHit;
     private Color color;
+    public string targetTag;
 
     void Awake()
     {
@@ -16,27 +17,23 @@ public class PlayerInfo : MonoBehaviour
         stat = stat.SetUnitStat(unitCode);
         isHit = false;
         color = gameObject.GetComponent<SpriteRenderer>().color;
+        targetTag = "Enemy";
 
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    public void GetDamage(int damage)
     {
-        Debug.Log("a");
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (!isHit)
         {
-            if (!isHit)
+            stat.HP -= damage;
+            Debug.Log("HP : " + stat.HP);
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(color.r, color.g, color.b, 0.5f);
+            if (stat.HP <= 0)
             {
-                int damage = collision.gameObject.GetComponent<EnemyInfo>().stat.ATK;
-                stat.HP -= damage;
-                Debug.Log("HP : " + stat.HP);
-                gameObject.GetComponent<SpriteRenderer>().color = new Color(color.r, color.g, color.b, 0.5f);
-                if (stat.HP <= 0)
-                {
-                    //게임오버
-                }
-                isHit = true;
-                StartCoroutine(GetDamage());
+                //게임오버
             }
+            isHit = true;
+            StartCoroutine(GetDamage());
         }
     }
 
