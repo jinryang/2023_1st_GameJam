@@ -19,7 +19,7 @@ public class PlayerFSM : MonoBehaviour
     public void Start()
     {
         _curState = State.Idle;
-        _fsm = new FSM(new IdleState(this,_animator));
+        _fsm = new FSM(new IdleState(this, _animator));
         //Debug.Log("ddkkdkdkdk");
     }
 
@@ -31,10 +31,9 @@ public class PlayerFSM : MonoBehaviour
             case State.Idle:
                 if (IsMoving())
                 {
-                    Debug.Log(1);
                     ChangeState(State.Move);
                 }
-                else if(CanAttack())
+                else if (CanAttack())
                 {
                     ChangeState(State.Attack);
                 }
@@ -48,7 +47,6 @@ public class PlayerFSM : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log(2);
                         ChangeState(State.Idle);
                     }
                 }
@@ -58,7 +56,7 @@ public class PlayerFSM : MonoBehaviour
                 {
                     ChangeState(State.Move);
                 }
-                else if(!CanAttack())
+                else if (!CanAttack())
                 {
                     ChangeState(State.Idle);
                 }
@@ -87,19 +85,18 @@ public class PlayerFSM : MonoBehaviour
 
     private bool IsMoving()
     {
-        if (new Vector2(transform.position.x, transform.position.y) != moveSystem.movePoint)
+        if (Mathf.Abs(transform.position.x - moveSystem.transform.position.x) > 0.5f || Mathf.Abs(transform.position.y - moveSystem.transform.position.y) > 0.5f)
         {
-            //yebug.Log("true");
             return true;
         }
-        //Debug.Log("false");
         return false;
     }
 
     private bool CanAttack()
     {
-        int EnemyCount = 1;
-        if (new Vector2(transform.position.x, transform.position.y) == moveSystem.movePoint && EnemyCount == 0)
+        int EnemyCount = GetComponent<PlayerAttack>().GetCount();
+
+        if (EnemyCount != 0)
             return true;
         return false;
     }

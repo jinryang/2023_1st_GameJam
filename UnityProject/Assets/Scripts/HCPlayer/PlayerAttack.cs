@@ -1,38 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerAttack : MonoBehaviour
 {
-    
-    public GameObject Prefab;
-    GameObject[] gos;
+    public List<GameObject> gos;
     public List<GameObject> projectile;
-    
-    // Start is called before the first frame update
+
     void Start()
     {
-        gos = GameObject.FindGameObjectsWithTag("Enemy");
+        gos = GameObject.FindGameObjectsWithTag("Enemy").ToList();
     }
 
-    // Update is called once per frame
-    void Update()
+    public int GetCount()
     {
-        Attack();
-        for (int i = 0; i < projectile.Count; i++)
-        {
-
-            //if (!projectile[i].activeSelf)
-            //  projectile.RemoveAt(i);\
-            //Debug.Log("TLqkf");
-            //projectile[i].transform.position = Vector2.MoveTowards(projectile[i].transform.position, FindClosestEnemy().transform.position, 8 * Time.deltaTime);
-            //Debug.Log(FindClosestEnemy().ToString());
-        }
+        return gos.Count;
     }
-    
+
     void Attack()
     {
-        //if (gos.Length > 0)
+        if (gos.Count > 0 && Vector3.Distance(gameObject.transform.position, FindClosestEnemy().transform.position) < 15)
         {
             Projectile temp;
             temp = ObjectPooling.instance.GetPool().GetComponent<Projectile>();
@@ -42,8 +32,14 @@ public class PlayerAttack : MonoBehaviour
             //projectile.Add(temp);
         }
     }
-    
-    // Find the name of the closest enemy
+
+    public void DeleteGos(GameObject deleteObject)
+    {
+        Debug.Log("count1 : " + gos.Count);
+        gos.Remove(deleteObject);
+        Debug.Log("count2 : " + gos.Count);
+    }
+
     GameObject FindClosestEnemy()
     {
         GameObject closest = null;
@@ -51,7 +47,7 @@ public class PlayerAttack : MonoBehaviour
         Vector3 position = transform.position;
         foreach (GameObject go in gos)
         {
-            Vector2 diff =  go.transform.position - position;
+            Vector2 diff = go.transform.position - position;
             float curDistance = diff.sqrMagnitude;
             if (curDistance < distance)
             {
