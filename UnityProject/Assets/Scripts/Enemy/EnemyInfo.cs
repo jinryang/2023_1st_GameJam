@@ -69,13 +69,13 @@ public class EnemyInfo : MonoBehaviour
     private void GetDamage()
     {
         stat.HP -= target.GetComponent<PlayerInfo>().stat.ATK;
-        Debug.Log(stat.HP);
+        Debug.Log("monsterHP : " + stat.HP);
         hpBarSlider.value = stat.HP;
         if (stat.HP <= 0)
         {
             target.GetComponent<PlayerInfo>().GetEXP(stat.EXP);
             //적 처치 보상
-
+            target.GetComponent<PlayerAttack>().DeleteGos(gameObject);
             Destroy(hpBar);
             Destroy(gameObject);
         }

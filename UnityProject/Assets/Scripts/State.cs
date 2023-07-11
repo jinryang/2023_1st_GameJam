@@ -24,7 +24,6 @@ public class IdleState : BaseState
 
     public override void OnStateEnter()
     {
-        animator.SetBool("IsRun", false);
         animator.SetBool("IsAttack", false);
         animator.SetBool("IsRun", false);
     }
@@ -44,8 +43,6 @@ public class MoveState : BaseState
 
     public override void OnStateEnter()
     {
-        animator.SetBool("IsRun", false);
-        animator.SetBool("IsAttack", false);
         animator.SetBool("IsRun", true);
     }
 
@@ -64,7 +61,6 @@ public class AttackState : BaseState
 
     public override void OnStateEnter()
     {
-        animator.SetBool("IsRun", false);
         animator.SetBool("IsRun", false);
         animator.SetBool("IsAttack", true);
     }   

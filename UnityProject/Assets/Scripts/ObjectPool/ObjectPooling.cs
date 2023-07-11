@@ -9,23 +9,16 @@ public class ObjectPooling : MonoBehaviour
 
     public GameObject Prefab;
     private Queue<GameObject> projectileQueue = new Queue<GameObject>();
-    // Start is called before the first frame update
+
     void Start()
     {
         if (instance == null) instance = this;
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 10; i++)
         {
-            Debug.Log(i);
             GameObject temp = Instantiate(Prefab);
             temp.gameObject.SetActive(false);
             projectileQueue.Enqueue(temp);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void InsertPool(GameObject gameObject)
