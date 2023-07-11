@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class AgentScript : MonoBehaviour
+public class PlayerAgentScript : MonoBehaviour
 {
     [SerializeField] Transform target;
 
@@ -11,10 +11,8 @@ public class AgentScript : MonoBehaviour
 
     void Start()
     {
-        target = GameObject.FindGameObjectWithTag("Player").transform;
-
         agent = GetComponent<NavMeshAgent>();
-        agent.speed = GetComponent<EnemyInfo>().stat.moveSpeed;
+        agent.speed = GetComponent<PlayerInfo>().stat.moveSpeed;
         agent.updateRotation = false;
         agent.updateUpAxis = false;
     }
