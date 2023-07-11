@@ -14,6 +14,7 @@ public class AgentScript : MonoBehaviour
         target = GameObject.FindGameObjectWithTag("Player").transform;
 
         agent = GetComponent<NavMeshAgent>();
+        agent.speed = GetComponent<EnemyInfo>().stat.moveSpeed;
         agent.updateRotation = false;
         agent.updateUpAxis = false;
     }
