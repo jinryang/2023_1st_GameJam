@@ -29,15 +29,12 @@ public class Move : MonoBehaviour
             if (hit.collider != null)
             {
                 movePoint = hit.point;
-                Debug.Log(movePoint);
-                
             }
         }
 
         MovePlayer();
-
-
     }
+
     void MovePlayer()
     {
         gameObject.transform.position = Vector2.MoveTowards(transform.position, movePoint, speed*Time.deltaTime);

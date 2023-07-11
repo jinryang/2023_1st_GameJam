@@ -11,6 +11,9 @@ public class PlayerInfo : MonoBehaviour
     private Color color;
     public string targetTag;
 
+    private int nowExp;
+    private int level;
+
     void Awake()
     {
         stat = new Stat();
@@ -18,7 +21,25 @@ public class PlayerInfo : MonoBehaviour
         isHit = false;
         color = gameObject.GetComponent<SpriteRenderer>().color;
         targetTag = "Enemy";
+        level = 1;
 
+    }
+
+    public void GetEXP(int value)
+    {
+        nowExp += value;
+        Debug.Log("Lv. " + level + "    exp : " + nowExp + "/" + stat.EXP);
+        if (nowExp >= stat.EXP)
+        {
+            nowExp -= stat.EXP;
+
+            //레벨업 템주기
+
+
+
+            level++;
+            stat.EXP += (int)(stat.EXP * 0.5f);
+        }
     }
 
     public void GetDamage(int damage)

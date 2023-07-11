@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyInfo : MonoBehaviour
 {
@@ -9,6 +10,14 @@ public class EnemyInfo : MonoBehaviour
     public Stat stat;
     private Color color;
     public GameObject target;
+    public GameObject preHpBar;
+    public GameObject canvas;
+
+    GameObject hpBar;
+    RectTransform hpBarTrans;
+    Slider hpBarSlider;
+    public float height = 1.5f;
+
 
     float timer = 0f;
     bool isCrash = false;
@@ -19,16 +28,37 @@ public class EnemyInfo : MonoBehaviour
         stat = stat.SetUnitStat(unitCode);
         color = gameObject.GetComponent<SpriteRenderer>().color;
         target = GameObject.FindGameObjectWithTag("Player");
+        hpBar = Instantiate(preHpBar, canvas.transform);
+        hpBarTrans = hpBar.GetComponent<RectTransform>();
+        hpBarSlider = hpBar.GetComponent<Slider>();
+
+        hpBarSlider.maxValue = stat.maxHp;
+        hpBarSlider.value = stat.maxHp;
+
 
     }
 
     private void Update()
     {
-        if (isCrash)
+        Vector3 hpBarPos = new Vector3(transform.position.x, transform.position.y + height, 0);
+        hpBarTrans.position = hpBarPos;
+
+        if (isCrash && stat.moveSpeed != 0)
         {
-            if (timer > 0.2f)
+            if (timer > stat.AttackSpeed)
             {
                 target.GetComponent<PlayerInfo>().GetDamage(stat.ATK);
+                timer = 0f;
+            }
+            else
+                timer += Time.deltaTime;
+        }
+        if (stat.moveSpeed == 0)
+        {
+            if (timer > stat.AttackSpeed)
+            {
+                //플레이어쪽으로 총알 발사
+                Debug.Log("총알 발사");
                 timer = 0f;
             }
             else
@@ -39,10 +69,14 @@ public class EnemyInfo : MonoBehaviour
     private void GetDamage()
     {
         stat.HP -= target.GetComponent<PlayerInfo>().stat.ATK;
+        Debug.Log(stat.HP);
+        hpBarSlider.value = stat.HP;
         if (stat.HP <= 0)
         {
+            target.GetComponent<PlayerInfo>().GetEXP(stat.EXP);
             //적 처치 보상
 
+            Destroy(hpBar);
             Destroy(gameObject);
         }
     }
@@ -51,7 +85,7 @@ public class EnemyInfo : MonoBehaviour
     {
         if (collision.CompareTag(target.tag))
         {
-            timer = 1f;
+            timer = 10f;
             isCrash = true;
         }
         if (collision.CompareTag("PlayerAttack"))

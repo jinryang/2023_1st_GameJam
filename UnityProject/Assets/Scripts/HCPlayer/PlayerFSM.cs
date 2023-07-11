@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerFSM : MonoBehaviour
 {
     public Animator _animator;
-    public Move moveSistem;
+    public Move moveSystem;
     private enum State
     {
         Idle,
@@ -87,9 +87,9 @@ public class PlayerFSM : MonoBehaviour
 
     private bool IsMoving()
     {
-        if (new Vector2(transform.position.x, transform.position.y) != moveSistem.movePoint)
+        if (new Vector2(transform.position.x, transform.position.y) != moveSystem.movePoint)
         {
-            //Debug.Log("true");
+            //yebug.Log("true");
             return true;
         }
         //Debug.Log("false");
@@ -99,7 +99,7 @@ public class PlayerFSM : MonoBehaviour
     private bool CanAttack()
     {
         int EnemyCount = 1;
-        if (new Vector2(transform.position.x, transform.position.y) == moveSistem.movePoint && EnemyCount == 0)
+        if (new Vector2(transform.position.x, transform.position.y) == moveSystem.movePoint && EnemyCount == 0)
             return true;
         return false;
     }

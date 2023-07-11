@@ -9,4 +9,5 @@ public enum UnitCode
     Flower,
     Goblin,
     Goblin_Bow,
+    Skeleton
 }
