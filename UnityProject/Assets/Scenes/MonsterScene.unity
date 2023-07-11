@@ -1838,7 +1838,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 170aecf1c7fbee44e80a9398726b8aa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 113866710402763426, guid: d101dc67a2e64734195f84f52967f3e5, type: 3}
   gos: []
   projectile: []
 --- !u!1 &1864479290
@@ -2127,7 +2126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e1e8ce8578b4d7498098b01efa8233a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 113866710402763426, guid: d101dc67a2e64734195f84f52967f3e5, type: 3}
+  Prefab: {fileID: 6832834675362190605, guid: 5247a95d96332044a9c149a8f350c2e0, type: 3}
 --- !u!4 &1936258672
 Transform:
   m_ObjectHideFlags: 0
@@ -2188,7 +2187,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  movePoint: {x: 0, y: -3}
   mainCamera: {fileID: 1746479294}
   mousePosition: {x: 0, y: -3, z: 0}
 --- !u!1 &2097861602

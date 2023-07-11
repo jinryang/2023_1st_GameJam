@@ -7,8 +7,6 @@ using UnityEngine.UIElements;
 
 public class PlayerAttack : MonoBehaviour
 {
-
-    public GameObject Prefab;
     public List<GameObject> gos;
     public List<GameObject> projectile;
 

@@ -5,7 +5,6 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     private Vector2 TargetPoint;
-    public int rotateSpeed;
     private Vector3 dir;
 
     public void SetTarget(GameObject Target)
