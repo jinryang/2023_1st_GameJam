@@ -10,8 +10,6 @@ public class KusinSkill2 : MonoBehaviour
     public void Skill(Transform targer)
     {
         //shot Bullet
-        gameObject.transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y - 2);
-        gameObject.transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y + 2);
     }
 
     // Update is called once per frame

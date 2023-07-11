@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class KusinSkill1 : MonoBehaviour
 {
-    float time;
-    float temptime;
-
     public void Skill(Transform targer)
     {
 
