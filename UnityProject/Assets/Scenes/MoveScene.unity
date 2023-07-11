@@ -786,7 +786,7 @@ GameObject:
   - component: {fileID: 2069412996}
   m_Layer: 0
   m_Name: Square
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -928,7 +928,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 2069412994}
-  moveSistem: {fileID: 2069412992}
+  moveSystem: {fileID: 2069412992}
 --- !u!114 &2069412996
 MonoBehaviour:
   m_ObjectHideFlags: 0
