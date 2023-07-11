@@ -45,6 +45,9 @@ public class Stat : MonoBehaviour
             case UnitCode.Slime:
                 stat = new Stat(unitCode, "Slime", 20, 20, 5, 0, 1f, 0f, 1f);
                 break;
+            default:
+                Debug.Log("아직 만들어지지 않았다.");
+                break;
         }
         return stat;
     }

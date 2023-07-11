@@ -36,12 +36,27 @@ public class EnemyInfo : MonoBehaviour
         }
     }
 
+    private void GetDamage()
+    {
+        stat.HP -= target.GetComponent<PlayerInfo>().stat.ATK;
+        if (stat.HP <= 0)
+        {
+            //적 처치 보상
+
+            Destroy(gameObject);
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag(target.tag))
         {
             timer = 1f;
             isCrash = true;
+        }
+        if (collision.CompareTag("PlayerAttack"))
+        {
+            GetDamage();
         }
     }
 

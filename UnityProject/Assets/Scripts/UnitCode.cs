@@ -5,5 +5,8 @@ using UnityEngine;
 public enum UnitCode
 {
     Player,
-    Slime
+    Slime,
+    Flower,
+    Goblin,
+    Goblin_Bow,
 }
