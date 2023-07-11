@@ -43,7 +43,7 @@ public class Stat : MonoBehaviour
                 stat = new Stat(unitCode, "Player", 100, 100, 15, 0, 0.8f, 4f, 4f);
                 break;
             case UnitCode.Slime:
-                stat = new Stat(unitCode, "Slime", 20, 20, 5, 0, 1f, 0f, 2.5f);
+                stat = new Stat(unitCode, "Slime", 20, 20, 5, 0, 1f, 0f, 1f);
                 break;
         }
         return stat;
