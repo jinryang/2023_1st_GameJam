@@ -9,6 +9,7 @@ TagManager:
   - floor
   - wall
   - EnemyBullet
+  - Canvas
   layers:
   - Default
   - TransparentFX

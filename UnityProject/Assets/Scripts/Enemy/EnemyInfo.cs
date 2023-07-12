@@ -29,6 +29,7 @@ public class EnemyInfo : MonoBehaviour
         stat = stat.SetUnitStat(unitCode);
         color = gameObject.GetComponent<SpriteRenderer>().color;
         target = GameObject.FindGameObjectWithTag("Player");
+        canvas = GameObject.FindGameObjectWithTag("Canvas");
         hpBar = Instantiate(preHpBar, canvas.transform);
         hpBarTrans = hpBar.GetComponent<RectTransform>();
         hpBarSlider = hpBar.GetComponent<Slider>();
@@ -46,7 +47,7 @@ public class EnemyInfo : MonoBehaviour
         else if (target.transform.position.x > transform.position.x)
             transform.localScale = new Vector3(-1, 1, 1);
 
-        Vector3 hpBarPos = new Vector3(transform.position.x, transform.position.y + height, 0);
+        Vector3 hpBarPos = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y + height, 0));
         hpBarTrans.position = hpBarPos;
 
         if (isCrash && stat.moveSpeed != 0)
