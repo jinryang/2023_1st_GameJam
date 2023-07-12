@@ -13,6 +13,7 @@ public class PlayerInfo : MonoBehaviour
 
     private int nowExp;
     private int level;
+    public HpManager myHp;
 
     void Awake()
     {
@@ -49,6 +50,7 @@ public class PlayerInfo : MonoBehaviour
             stat.HP -= damage;
             Debug.Log("HP : " + stat.HP);
             gameObject.GetComponent<SpriteRenderer>().color = new Color(color.r, color.g, color.b, 0.5f);
+            myHp.UpdateHP();
             if (stat.HP <= 0)
             {
                 //게임오버
