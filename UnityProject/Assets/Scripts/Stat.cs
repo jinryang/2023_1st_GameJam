@@ -48,6 +48,15 @@ public class Stat : MonoBehaviour
             case UnitCode.Flower:
                 stat = new Stat(unitCode, "Flower", 5, 5, 1, 2, 1.5f, 4f, 0f);
                 break;
+            case UnitCode.Goblin:
+                stat = new Stat(unitCode, "Goblin", 5, 5, 2, 3, 0.2f, 0f, 2f);
+                break;
+            case UnitCode.Goblin_Bow:
+                stat = new Stat(unitCode, "Goblin_Bow", 6, 6, 2, 3, 1f, 6.5f, 0f);
+                break;
+            case UnitCode.Skeleton:
+                stat = new Stat(unitCode, "Skeleton", 11, 11, 5, 5, 0.2f, 0f, 1f);
+                break;
             default:
                 Debug.Log("아직 만들어지지 않았다.");
                 break;

@@ -19,6 +19,10 @@ public class PlayerAgentScript : MonoBehaviour
 
     void Update()
     {
+        if (target.position.x < transform.position.x)
+            transform.localScale = new Vector3(1, 1, 1);
+        else if (target.position.x > transform.position.x)
+            transform.localScale = new Vector3(-1, 1, 1);
         agent.SetDestination(target.position);
     }
 }

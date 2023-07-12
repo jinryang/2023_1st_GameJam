@@ -8,6 +8,8 @@ TagManager:
   - PlayerAttack
   - floor
   - wall
+  - EnemyBullet
+  - Canvas
   layers:
   - Default
   - TransparentFX

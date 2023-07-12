@@ -18,6 +18,7 @@ public class EnemyInfo : MonoBehaviour
     Slider hpBarSlider;
     public float height = 1.5f;
 
+    public GameObject PreBullet;
 
     float timer = 0f;
     bool isCrash = false;
@@ -28,6 +29,7 @@ public class EnemyInfo : MonoBehaviour
         stat = stat.SetUnitStat(unitCode);
         color = gameObject.GetComponent<SpriteRenderer>().color;
         target = GameObject.FindGameObjectWithTag("Player");
+        canvas = GameObject.FindGameObjectWithTag("Canvas");
         hpBar = Instantiate(preHpBar, canvas.transform);
         hpBarTrans = hpBar.GetComponent<RectTransform>();
         hpBarSlider = hpBar.GetComponent<Slider>();
@@ -40,7 +42,12 @@ public class EnemyInfo : MonoBehaviour
 
     private void Update()
     {
-        Vector3 hpBarPos = new Vector3(transform.position.x, transform.position.y + height, 0);
+        if (target.transform.position.x < transform.position.x)
+            transform.localScale = new Vector3(1, 1, 1);
+        else if (target.transform.position.x > transform.position.x)
+            transform.localScale = new Vector3(-1, 1, 1);
+
+        Vector3 hpBarPos = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y + height, 0));
         hpBarTrans.position = hpBarPos;
 
         if (isCrash && stat.moveSpeed != 0)
@@ -57,8 +64,7 @@ public class EnemyInfo : MonoBehaviour
         {
             if (timer > stat.AttackSpeed)
             {
-                //플레이어쪽으로 총알 발사
-                Debug.Log("총알 발사");
+                Attack();
                 timer = 0f;
             }
             else
@@ -78,6 +84,17 @@ public class EnemyInfo : MonoBehaviour
             target.GetComponent<PlayerAttack>().DeleteGos(gameObject);
             Destroy(hpBar);
             Destroy(gameObject);
+        }
+    }
+
+    void Attack()
+    {
+        if (Vector3.Distance(gameObject.transform.position, GetComponent<EnemyInfo>().target.transform.position) < 13)
+        {
+            GameObject bullet = Instantiate(PreBullet, transform.position, Quaternion.identity);
+            bullet.GetComponent<EnemyBullet>().target = target;
+            bullet.GetComponent<EnemyBullet>().speed = stat.ShotSpeed;
+            bullet.GetComponent<EnemyBullet>().damage = stat.ATK;
         }
     }
 
