@@ -30,5 +30,9 @@ public class Projectile : MonoBehaviour
         {
             ObjectPooling.instance.InsertPool(gameObject);
         }
+        if(collision.tag == "wall")
+        {
+            ObjectPooling.instance.InsertPool(gameObject);
+        }
     }
 }
