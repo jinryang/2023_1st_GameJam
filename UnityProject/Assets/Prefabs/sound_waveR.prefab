@@ -126,5 +126,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.1
   direc: right
-  LifeTime: 6
-  spread: 10
+  LifeTime: 3
+  spread: 5
