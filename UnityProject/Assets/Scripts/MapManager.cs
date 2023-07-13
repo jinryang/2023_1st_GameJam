@@ -4,15 +4,34 @@ using UnityEngine;
 
 public class MapManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    GameObject player;
+    public GameObject[] portals;
+    private bool portalopen=false;
+
+    private void Start()
     {
-        
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ClosePortal()
     {
-        
+        portalopen = false;
+        for (int i = 0; i < portals.Length; i++)
+        {
+            portals[i].SetActive(false);
+        }
+    }
+
+    public void Update()
+    {
+        if (!portalopen && player.GetComponent<PlayerAttack>().GetCount() < 1)
+        {
+            Debug.Log("a");
+            portalopen = true;
+            for(int i=0; i<portals.Length;i++)
+            {
+                portals[i].SetActive(true);
+            }
+        }
     }
 }
