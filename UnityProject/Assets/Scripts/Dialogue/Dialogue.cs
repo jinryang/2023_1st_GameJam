@@ -36,11 +36,12 @@ public class Dialogue : MonoBehaviour
 
     public void StartTextintg()
     {
-        if(num == EventText.Length)
+        if (num == EventText.Length)
         {
-            if(SpawnBoss)
+            if (SpawnBoss)
             {
                 Instantiate(Boss, gameObject.transform.position, Quaternion.identity);
+                GameObject.Find("Player").GetComponent<PlayerAttack>().NewWave();
                 UI.SetActive(false);
                 Destroy(gameObject);
             }
@@ -59,7 +60,7 @@ public class Dialogue : MonoBehaviour
     IEnumerator Type(object text, int Who)
     {
         textObj.text = "";
-        if(Who == 1)
+        if (Who == 1)
         {
             DialogueTarget.color = new Color(0.5f, 0.5f, 0.5f, 1);
             Player.color = new Color(1, 1, 1, 1);

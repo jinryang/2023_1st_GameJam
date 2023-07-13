@@ -61,7 +61,7 @@ Transform:
   m_GameObject: {fileID: 4787036252168117374}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.09, y: 3.16, z: 0}
-  m_LocalScale: {x: 16.715, y: 16.715, z: 16.715}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4787036251772900883}
@@ -180,8 +180,8 @@ MonoBehaviour:
   MouthPos: {fileID: 4787036251772900883}
   UltTime: 10
   name: "\uCEE4\uC2E0"
-  maxHp: 1000
-  HP: 1000
+  maxHp: 10
+  HP: 10
   ATK: 5
   EXP: 100
   moveNumber: 2

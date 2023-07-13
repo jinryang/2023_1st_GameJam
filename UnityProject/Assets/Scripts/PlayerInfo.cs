@@ -55,7 +55,7 @@ public class PlayerInfo : MonoBehaviour
             GetComponent<PlayerAgentScript>().Setspeed(1f);
             isSlow = true;
         }
-        else
+        else if (isSlow)
         {
             slowTimer -= Time.deltaTime;
             if (slowTimer < 0)
@@ -64,7 +64,7 @@ public class PlayerInfo : MonoBehaviour
                 isSlow = false;
             }
         }
-        if (!isHit)
+        if (!isHit && damage != 0)
         {
             stat.HP -= damage;
             Debug.Log("HP : " + stat.HP);

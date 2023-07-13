@@ -6,7 +6,7 @@ public class KisinCircleWave : MonoBehaviour
 {
     public float spread;
     public float LifeTime;
-    PlayerInfo playerInfo;
+    public PlayerInfo playerInfo;
     void Start()
     {
 
