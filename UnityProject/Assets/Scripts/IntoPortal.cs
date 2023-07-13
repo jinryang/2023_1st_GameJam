@@ -10,17 +10,20 @@ public class IntoPortal : MonoBehaviour
     public GameObject monsterWave;
     GameObject player;
     GameObject playerMover;
+    MapManager mapmanager;
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         playerMover = GameObject.FindGameObjectWithTag("PlayerMover");
+        mapmanager = GameObject.Find("MapManager").GetComponent<MapManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
+            mapmanager.ClosePortal();
             if (null == monsterWave)
             {
                 SceneManager.LoadScene("EndingScene");
