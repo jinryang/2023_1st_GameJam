@@ -8,8 +8,10 @@ public class PlayerInfo : MonoBehaviour
     public UnitCode unitCode;
     public Stat stat;
     private bool isHit;
+    private bool isSlow;
     private Color color;
     public string targetTag;
+    private float slowTimer;
 
     private int nowExp;
     private int level;
@@ -45,6 +47,23 @@ public class PlayerInfo : MonoBehaviour
 
     public void GetDamage(int damage)
     {
+        if (!isSlow && damage == 0)
+        {
+            if (slowTimer < 0)
+                slowTimer = 0;
+            slowTimer += 1;
+            GetComponent<PlayerAgentScript>().Setspeed(1f);
+            isSlow = true;
+        }
+        else
+        {
+            slowTimer -= Time.deltaTime;
+            if (slowTimer < 0)
+            {
+                GetComponent<PlayerAgentScript>().Setspeed(stat.moveSpeed);
+                isSlow = false;
+            }
+        }
         if (!isHit)
         {
             stat.HP -= damage;
@@ -62,7 +81,14 @@ public class PlayerInfo : MonoBehaviour
 
     IEnumerator GetDamage()
     {
-        yield return new WaitForSeconds(1f);
+        gameObject.GetComponent<SpriteRenderer>().color = color;
+        yield return new WaitForSeconds(0.25f);
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(color.r, color.g, color.b, 0.5f);
+        yield return new WaitForSeconds(0.25f);
+        gameObject.GetComponent<SpriteRenderer>().color = color;
+        yield return new WaitForSeconds(0.25f);
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(color.r, color.g, color.b, 0.5f);
+        yield return new WaitForSeconds(0.25f);
         gameObject.GetComponent<SpriteRenderer>().color = color;
         isHit = false;
     }

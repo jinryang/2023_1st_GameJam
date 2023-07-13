@@ -8,9 +8,8 @@ using UnityEngine.UIElements;
 public class PlayerAttack : MonoBehaviour
 {
     public List<GameObject> gos;
-    public List<GameObject> projectile;
 
-    void Start()
+    public void NewWave()
     {
         gos = GameObject.FindGameObjectsWithTag("Enemy").ToList();
     }

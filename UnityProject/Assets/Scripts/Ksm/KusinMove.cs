@@ -14,6 +14,7 @@ public class KusinMove : MonoBehaviour
     [SerializeField] Sprite Attack;
     [SerializeField] Sprite Ult1;
     [SerializeField] Sprite Ult2;
+    [SerializeField] Transform MouthPos;
     SpriteRenderer spriteRenderer;
     Transform target;
     public float UltTime;
@@ -109,8 +110,9 @@ public class KusinMove : MonoBehaviour
                         Ranx = GetRand();
                         Rany = GetRand();
                         if (spriteRenderer.color.a < 1)
+                        {
                             spriteRenderer.color = new Color(1, 1, 1, spriteRenderer.color.a + Time.deltaTime);
-
+                        }
                         //스킬 소환
                     }
 
@@ -153,11 +155,11 @@ public class KusinMove : MonoBehaviour
                             shotTime = 0.25f;
                             if (IsLeft)
                             {
-                                Instantiate(SoundWaveL, gameObject.transform.position, Quaternion.AngleAxis(Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg, Vector3.forward));
+                                Instantiate(SoundWaveL, MouthPos.position, Quaternion.AngleAxis(Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg, Vector3.forward));
                             }
                             else
                             {
-                                Instantiate(SoundWaveR, gameObject.transform.position, Quaternion.AngleAxis(Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg, Vector3.forward));
+                                Instantiate(SoundWaveR, MouthPos.position, Quaternion.AngleAxis(Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg, Vector3.forward));
                             }
                             SoundWave_Count--;
                         }
@@ -227,6 +229,7 @@ public class KusinMove : MonoBehaviour
             }
 
         }
+
 
     }
 

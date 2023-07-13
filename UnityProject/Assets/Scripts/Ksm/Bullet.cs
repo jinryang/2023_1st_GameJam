@@ -8,23 +8,27 @@ namespace Kusin
     {
         public float Speed;
         public float WaitTime;
+        PlayerInfo playerInfo;
         // Start is called before the first frame update
         void Start()
         {
 
         }
 
-        private void OnTriggerEnter2D(Collider collision)
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            if(WaitTime < 0)
+            Debug.Log("Hit");
+            if (WaitTime < 0)
             {
-                if (collision.CompareTag("Wall"))
+                if (collision.CompareTag("wall"))
                 {
                     Destroy(gameObject);
                 }
                 else if (collision.CompareTag("Player"))
                 {
                     //АјАн
+                    playerInfo = collision.GetComponent<PlayerInfo>();
+                    playerInfo.GetDamage(1);
                     Destroy(gameObject);
                 }
             }
