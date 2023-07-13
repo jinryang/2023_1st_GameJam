@@ -34,7 +34,7 @@ public class FakeNeedMore : MonoBehaviour
                     Debug.Log("ischange");
                     //RealNeedMore = Instantiate(NeedMore);
                     Player.GetComponent<PlayerAttack>().DeleteGos(gameObject);
-                    Player.GetComponent<PlayerAttack>().AddGos(RealNeedMore);
+                    //Player.GetComponent<PlayerAttack>().AddGos(RealNeedMore);
                     //Blink.StartBlink(gameObject);
                 }
             }
