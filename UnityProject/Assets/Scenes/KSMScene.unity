@@ -385,8 +385,14 @@ MonoBehaviour:
   SoundWaveR: {fileID: 949594239293559061, guid: 7b5007b1ee185514a8c62c3bc3b2b9f9, type: 3}
   SoundWaveL: {fileID: 1821739540917397382, guid: 988d03c8efc912b4589ae0571eab9958, type: 3}
   CircleWave: {fileID: 2575921973889172420, guid: 093e1b05aa6772744a763acacbee477f, type: 3}
+  KusinBullet: {fileID: 491334175465401975, guid: ea92b2a705160be479adea096c2cf5c1, type: 3}
+  animator: {fileID: 0}
   state: {fileID: 21300000, guid: 76be5e43c6cc1ae4ab6b7353e3c01c27, type: 3}
   CircleSpr: {fileID: 21300000, guid: 4d214c58c4010b84fb37a52898e6851d, type: 3}
+  Attack: {fileID: 21300000, guid: 051f5f98d3b04d8459142d9dccc54d21, type: 3}
+  Ult1: {fileID: 21300000, guid: 5935406f198e42f47adb7f5371784368, type: 3}
+  Ult2: {fileID: 21300000, guid: ca7ed8d2359772f42af146cd1f95f820, type: 3}
+  UltTime: 10
   name: "\uCEE4\uC2E0"
   maxHp: 1000
   HP: 1000
@@ -396,10 +402,11 @@ MonoBehaviour:
   SoundWave_Count: 6
   CircleFirstWait: 3
   circleWaitTime: 1
+  animTime: 0.1
   moveTime: 5
   movingTime: 3
   Speed: 1
-  circleNum: 3
+  circleNum: 2
 --- !u!70 &306978188
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
