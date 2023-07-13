@@ -21,7 +21,7 @@ public class KusinSoundWave : MonoBehaviour
         if (collision.CompareTag("Player"))
         {/*
             playerInfo = collision.GetComponent<PlayerInfo>();
-            playerInfo.stat.HP -= 5;*/
+            playerInfo.stat.HP -= 1;*/
         }
     }
 

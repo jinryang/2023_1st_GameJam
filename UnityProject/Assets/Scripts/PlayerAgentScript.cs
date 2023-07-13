@@ -17,6 +17,11 @@ public class PlayerAgentScript : MonoBehaviour
         agent.updateUpAxis = false;
     }
 
+    public void Setspeed(float value)
+    {
+        agent.speed = value;
+    }
+
     void Update()
     {
         if (target.position.x < transform.position.x)

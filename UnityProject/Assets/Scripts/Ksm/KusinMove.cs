@@ -7,15 +7,23 @@ public class KusinMove : MonoBehaviour
     [SerializeField] GameObject SoundWaveR;
     [SerializeField] GameObject SoundWaveL;
     [SerializeField] GameObject CircleWave;
+    [SerializeField] GameObject KusinBullet;
+    [SerializeField] Animator animator;
     [SerializeField] Sprite state;
     [SerializeField] Sprite CircleSpr;
+    [SerializeField] Sprite Attack;
+    [SerializeField] Sprite Ult1;
+    [SerializeField] Sprite Ult2;
+    [SerializeField] Transform MouthPos;
     SpriteRenderer spriteRenderer;
     Transform target;
+    public float UltTime;
     public string name;
     public int maxHp;
     public int HP;
     public int ATK;
     public int EXP;
+    float UltATK = 1f;
     public int moveNumber = 2;
     int tempNumber;
     public int SoundWave_Count;
@@ -30,6 +38,8 @@ public class KusinMove : MonoBehaviour
     private float tempCircle;
 
     bool IsLeft;
+
+    public float animTime = 0.1f;
 
     public float moveTime;
     float tempMove;
@@ -65,115 +75,162 @@ public class KusinMove : MonoBehaviour
     }
     void Update()
     {
-        if(patturn < 4)
+        if(IsLeft)
         {
-            spriteRenderer.sprite = state;
-            if (transform.position.x - target.transform.position.x > 0)
+            if(transform.localScale.x > 0)
             {
-                IsLeft = true;
+                gameObject.transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
             }
-            else
+        }
+        else
+        {
+            if (transform.localScale.x < 0)
             {
-                IsLeft = false;
+                gameObject.transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
             }
-            if (moveNumber > 0)
+        }
+        if((float)(HP / maxHp) > 0.3f || UltTime < 0)
+        {
+            if (patturn < 4)
             {
-                if (!isMoving)
+                spriteRenderer.sprite = state;
+                if (transform.position.x - target.transform.position.x > 0)
                 {
-                    moveTime -= Time.deltaTime;
-                    Ranx = GetRand();
-                    Rany = GetRand();
-                    if (spriteRenderer.color.a < 1)
-                        spriteRenderer.color = new Color(1, 1, 1, spriteRenderer.color.a + Time.deltaTime);
-
-                    //스킬 소환
+                    IsLeft = true;
                 }
-
-                if (moveTime < 0)
+                else
                 {
-                    moveTime = tempMove;
-                    isMoving = true;
-                    dir = target.position - transform.position;
-                    moveNumber--;
-                    patturn = Random.Range(0, 5);
+                    IsLeft = false;
                 }
-
-                if (movingTime < 0)//움직임 상태가 끝났다면
+                if (moveNumber > 0)
                 {
-                    isMoving = false;
-                    movingTime = tempMoving;
-                    rigidbody2D.velocity = new Vector2(0, 0);
-                }
-
-                if (isMoving)//움직이기 시작함
-                {
-                    movingTime -= Time.deltaTime;
-
-                    float x = Ranx * Speed;
-                    float y = Rany * Speed;
-
-                    rigidbody2D.velocity = new Vector2(x, y);
-                    if (spriteRenderer.color.a > 0)
-                        spriteRenderer.color = new Color(1, 1, 1, spriteRenderer.color.a - Time.deltaTime);
-                }
-            }
-            else if (moveNumber <= 0)
-            {
-                if (SoundWave_Count > 0)
-                {
-
-                    Debug.Log(Quaternion.LookRotation(dir.normalized));
-                    shotTime -= Time.deltaTime;
-                    if (shotTime < 0)
+                    if (!isMoving)
                     {
-                        shotTime = 0.25f;
-                        if (IsLeft)
+                        moveTime -= Time.deltaTime;
+                        Ranx = GetRand();
+                        Rany = GetRand();
+                        if (spriteRenderer.color.a < 1)
                         {
-                            Instantiate(SoundWaveL, gameObject.transform.position, Quaternion.AngleAxis(Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg, Vector3.forward));
+                            spriteRenderer.color = new Color(1, 1, 1, spriteRenderer.color.a + Time.deltaTime);
                         }
-                        else
-                        {
-                            Instantiate(SoundWaveR, gameObject.transform.position, Quaternion.AngleAxis(Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg, Vector3.forward));
-                        }
-                        SoundWave_Count--;
+                        //스킬 소환
+                    }
+
+                    if (moveTime < 0)
+                    {
+                        moveTime = tempMove;
+                        isMoving = true;
+                        dir = target.position - transform.position;
+                        moveNumber--;
+                        patturn = Random.Range(0, 5);
+                    }
+
+                    if (movingTime < 0)//움직임 상태가 끝났다면
+                    {
+                        isMoving = false;
+                        movingTime = tempMoving;
+                        rigidbody2D.velocity = new Vector2(0, 0);
+                    }
+
+                    if (isMoving)//움직이기 시작함
+                    {
+                        movingTime -= Time.deltaTime;
+
+                        float x = Ranx * Speed;
+                        float y = Rany * Speed;
+
+                        rigidbody2D.velocity = new Vector2(x, y);
+                        if (spriteRenderer.color.a > 0)
+                            spriteRenderer.color = new Color(1, 1, 1, spriteRenderer.color.a - Time.deltaTime);
                     }
                 }
-                else
+                else if (moveNumber <= 0)
                 {
-                    moveNumber = tempNumber;
-                    SoundWave_Count = tempSoundWave;
+                    if (SoundWave_Count > 0)
+                    {
+                        spriteRenderer.sprite = Attack;
+                        shotTime -= Time.deltaTime;
+                        if (shotTime < 0)
+                        {
+                            shotTime = 0.25f;
+                            if (IsLeft)
+                            {
+                                Instantiate(SoundWaveL, MouthPos.position, Quaternion.AngleAxis(Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg, Vector3.forward));
+                            }
+                            else
+                            {
+                                Instantiate(SoundWaveR, MouthPos.position, Quaternion.AngleAxis(Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg, Vector3.forward));
+                            }
+                            SoundWave_Count--;
+                        }
+                    }
+                    else
+                    {
+                        moveNumber = tempNumber;
+                        SoundWave_Count = tempSoundWave;
+                    }
                 }
             }
+            else if (patturn == 4)
+            {
+                if (CircleFirstWait > 0)
+                {
+                    spriteRenderer.sprite = CircleSpr;
+                    CircleFirstWait -= Time.deltaTime;
+                }
+                else
+                {
+                    if (circleWaitTime > 0)
+                    {
+                        circleWaitTime -= Time.deltaTime;
+                    }
+                    else
+                    {
+                        Instantiate(CircleWave, gameObject.transform.position, Quaternion.identity);
+                        circleWaitTime = tempCircle;
+                        circleNum--;
+                    }
+                    if (circleNum < 0)
+                    {
+                        circleNum = tempCircleNum;
+                        circleWaitTime = tempCircle;
+                        CircleFirstWait = tempFirstWait;
+                        patturn = Random.Range(0, 5);
+                    }
+                }
+            }
+
         }
-        else if(patturn == 4)
+        else if(UltTime > 0)
         {
-            if(CircleFirstWait > 0)
+            if(spriteRenderer.color.a != 0)
             {
-                spriteRenderer.sprite = CircleSpr;
-                CircleFirstWait -= Time.deltaTime;
+                spriteRenderer.color = new Color(1,1,1,1);
             }
-            else
+            animTime -= Time.deltaTime;
+            if(animTime < 0)
             {
-                if(circleWaitTime > 0)
+                if (spriteRenderer.sprite != Ult2)
                 {
-                    circleWaitTime -= Time.deltaTime;
+                    spriteRenderer.sprite = Ult2;
                 }
                 else
                 {
-                    Instantiate(CircleWave, gameObject.transform.position, Quaternion.identity);
-                    circleWaitTime = tempCircle;
-                    circleNum--;
+                    spriteRenderer.sprite = Ult1;
                 }
-                if(circleNum < 0)
-                {
-                    circleNum = tempCircleNum;
-                    circleWaitTime = tempCircle;
-                    CircleFirstWait = tempFirstWait;
-                    patturn = Random.Range(0, 5);
-                }
+                animTime = 0.1f;
             }
+            UltTime -= Time.deltaTime;
+            UltATK -= Time.deltaTime;
+            if(UltATK < 0)
+            {
+                Instantiate(KusinBullet, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+                UltATK = 2.5f;
+            }
+
         }
-        
+
+
     }
 
     int GetRand()

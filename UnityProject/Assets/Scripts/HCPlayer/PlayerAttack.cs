@@ -40,6 +40,11 @@ public class PlayerAttack : MonoBehaviour
         Debug.Log("count2 : " + gos.Count);
     }
 
+    public void AddGos(GameObject AddObject)
+    {
+        gos.Add(AddObject);
+    }
+
     GameObject FindClosestEnemy()
     {
         GameObject closest = null;
