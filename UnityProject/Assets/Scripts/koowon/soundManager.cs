@@ -15,7 +15,7 @@ public class soundManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
 
           
-            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource = gameObject.AddComponent<AudioSource>();   
         }
         else
         {
