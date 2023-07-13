@@ -114,3 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12bea6e4619515a4aa04701787be0fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextPortal: {fileID: 702455444282779717}
+  player: {fileID: 0}
+  playerMover: {fileID: 0}
+  monsterWave: {fileID: 0}

@@ -10,7 +10,7 @@ using Cinemachine;
 public class CustomLockCameraY : CinemachineExtension
 {
     [Tooltip("Lock the camera's Y position to this value")]
-    public float m_YPosition = 10;
+    public float m_YPosition = 0;
     
     protected override void PostPipelineStageCallback(
         CinemachineVirtualCameraBase vcam,
@@ -19,7 +19,7 @@ public class CustomLockCameraY : CinemachineExtension
         if (stage == CinemachineCore.Stage.Finalize)
         {
             var pos = state.RawPosition;
-            pos.y = m_YPosition;
+            pos.x = m_YPosition;
             state.RawPosition = pos;
         }
     }
