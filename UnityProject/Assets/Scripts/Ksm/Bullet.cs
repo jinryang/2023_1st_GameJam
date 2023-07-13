@@ -14,11 +14,12 @@ namespace Kusin
 
         }
 
-        private void OnTriggerEnter2D(Collider collision)
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            if(WaitTime < 0)
+            Debug.Log("Hit");
+            if (WaitTime < 0)
             {
-                if (collision.CompareTag("Wall"))
+                if (collision.CompareTag("wall"))
                 {
                     Destroy(gameObject);
                 }
