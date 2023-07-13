@@ -12,11 +12,15 @@ public class FakeNeedMore : MonoBehaviour
     Blink Blink;
     bool IsChanged = false;
     Animator animator;
+    public GameObject sound;
+    sound dsafasdf;
+
     // Start is called before the first frame update
     void Start()
     {
         Blink = GetComponent<Blink>();
         animator = GetComponent<Animator>();
+        sound.SetActive(false);
     }
 
     // Update is called once per frame
@@ -25,7 +29,8 @@ public class FakeNeedMore : MonoBehaviour
         if (IsBossStart)
         {
             Stimer += Time.deltaTime;
-            if (Stimer >= 1.0f)
+            sound.SetActive(true);
+            if (Stimer >= 16.32f)
             {
                 if (!IsChanged)
                 {
