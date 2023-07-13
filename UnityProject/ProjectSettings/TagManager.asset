@@ -10,6 +10,7 @@ TagManager:
   - wall
   - EnemyBullet
   - Canvas
+  - PlayerMover
   layers:
   - Default
   - TransparentFX

@@ -81,7 +81,14 @@ public class PlayerInfo : MonoBehaviour
 
     IEnumerator GetDamage()
     {
-        yield return new WaitForSeconds(1f);
+        gameObject.GetComponent<SpriteRenderer>().color = color;
+        yield return new WaitForSeconds(0.25f);
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(color.r, color.g, color.b, 0.5f);
+        yield return new WaitForSeconds(0.25f);
+        gameObject.GetComponent<SpriteRenderer>().color = color;
+        yield return new WaitForSeconds(0.25f);
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(color.r, color.g, color.b, 0.5f);
+        yield return new WaitForSeconds(0.25f);
         gameObject.GetComponent<SpriteRenderer>().color = color;
         isHit = false;
     }
