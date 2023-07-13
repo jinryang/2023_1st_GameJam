@@ -10,6 +10,7 @@ public class Blink : MonoBehaviour
 
     public GameObject _NeedMore;
     public GameObject _RealNeedMore;
+    public GameObject Player;
 
     private void Start()
     {
@@ -17,6 +18,13 @@ public class Blink : MonoBehaviour
         toastPanal = GameObject.Find("NeedCanvers");
         toastPanal.SetActive(false);
        
+    }
+    public void Update()
+    {
+        if(Player == null)
+        {
+            Player = GameObject.Find("Player");
+        }
     }
 
     public void StartBlink(GameObject NeedMore)
@@ -30,7 +38,7 @@ public class Blink : MonoBehaviour
     public void EndChange()
     {
         Destroy(_NeedMore);
-        Instantiate(_RealNeedMore);
+        Player.GetComponent<PlayerAttack>().AddGos(Instantiate(_RealNeedMore));
     }
 
     IEnumerator EMarkerGrid(GameObject NeedMore)

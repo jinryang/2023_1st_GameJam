@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 356765388381136564}
   - component: {fileID: 356765388381135179}
   - component: {fileID: 356765388381136566}
+  - component: {fileID: -193391887417089999}
   - component: {fileID: 3867672450025404397}
   m_Layer: 0
   m_Name: NeedMoreCash
@@ -124,6 +125,25 @@ MonoBehaviour:
   eagle: {fileID: 1990077176388489011, guid: 071f1124722662c46b52c8f8559021b0, type: 3}
   AttackRange1: {fileID: 356765390230825950}
   AttackRange2: {fileID: 356765390058133851}
+--- !u!114 &-193391887417089999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 356765388381135178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dc8bae4ef3e5df43bb663a8f508044d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitCode: 0
+  stat: {fileID: 0}
+  target: {fileID: 0}
+  preHpBar: {fileID: 8839497214924543785, guid: e80bdf64106b9b946b81727620ef1137, type: 3}
+  canvas: {fileID: 0}
+  height: 1.5
+  PreBullet: {fileID: 0}
 --- !u!61 &3867672450025404397
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -264,7 +284,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d2f77dd43dff53439a7970efa512899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
 --- !u!1 &356765390230825950
 GameObject:
   m_ObjectHideFlags: 0
