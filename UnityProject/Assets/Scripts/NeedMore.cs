@@ -6,9 +6,10 @@ public class NeedMore : MonoBehaviour
 {
     bool IsChanged = false;
     public GameObject eagle;
-    float Stimer = 0;
+    float Stimer = 1;
     int Rand;
     Animator animator;
+    Blink Blink;
 
     public GameObject AttackRange1;
     public GameObject AttackRange2;
@@ -21,6 +22,7 @@ public class NeedMore : MonoBehaviour
     {
         AttackRange1.SetActive(false);
         AttackRange2.SetActive(false);
+        Blink = GetComponent<Blink>();
         NeedMoreCash();
 
         animator = GetComponent<Animator>();
@@ -30,8 +32,6 @@ public class NeedMore : MonoBehaviour
     void Update()
     {
         Stimer += Time.deltaTime;
-        Debug.Log(Stimer);
-        Debug.Log(IsChanged);
         if (Stimer>=4 && IsChanged)
         {
             RandomSkill();
@@ -55,13 +55,14 @@ public class NeedMore : MonoBehaviour
 
     void NeedMoreCash()
     {
-        //TODO변신
         //페이드 인, 아웃
         //
+        //Blink.StartBlink();
         IsChanged = true;
     }
     void SummonEagle()
     {
+        Instantiate(eagle);
         Instantiate(eagle);
     }
     void ALook()
