@@ -63,7 +63,7 @@ public class KusinMove : MonoBehaviour
         HP -= damage;
         if(HP<=0)
         {
-            SceneManager.LoadScene("BOSS_NeedMore");
+            SceneManager.LoadScene("EndingScene");
         }
     }
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerInfo : MonoBehaviour
 {
@@ -72,7 +73,7 @@ public class PlayerInfo : MonoBehaviour
             myHp.UpdateHP();
             if (stat.HP <= 0)
             {
-                //게임오버
+                SceneManager.LoadScene("TitleScene");
             }
             isHit = true;
             StartCoroutine(GetDamage());

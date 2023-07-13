@@ -8,7 +8,15 @@ public class TitleManager : MonoBehaviour
 {
     public void GameStart()
     {
+        SceneManager.LoadScene("OpeningScene");
+    }
+    public void GameScene()
+    {
         SceneManager.LoadScene("GameScene");
+    }
+    public void KSM()
+    {
+        SceneManager.LoadScene("KSMScene");
     }
 
     public void GameExit()
