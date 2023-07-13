@@ -57,6 +57,11 @@ public class KusinMove : MonoBehaviour
     public int circleNum;
     int patturn;
 
+    public void GetDamage(int damage)
+    {
+        HP -= damage;
+    }
+
     void Start()
     {
         target = GameObject.FindWithTag("Player").GetComponent<Transform>();
@@ -65,7 +70,7 @@ public class KusinMove : MonoBehaviour
         tempMove = moveTime;
         tempMoving = movingTime;
         tempNumber = moveNumber;
-
+        maxHp = HP;
         tempCircleNum = circleNum;
         tempSoundWave = SoundWave_Count;
         tempCircle = circleWaitTime;
