@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class KusinMove : MonoBehaviour
 {
@@ -57,6 +58,15 @@ public class KusinMove : MonoBehaviour
     public int circleNum;
     int patturn;
 
+    public void GetDamage(int damage)
+    {
+        HP -= damage;
+        if(HP<=0)
+        {
+            SceneManager.LoadScene("BOSS_NeedMore");
+        }
+    }
+
     void Start()
     {
         target = GameObject.FindWithTag("Player").GetComponent<Transform>();
@@ -65,7 +75,7 @@ public class KusinMove : MonoBehaviour
         tempMove = moveTime;
         tempMoving = movingTime;
         tempNumber = moveNumber;
-
+        maxHp = HP;
         tempCircleNum = circleNum;
         tempSoundWave = SoundWave_Count;
         tempCircle = circleWaitTime;
@@ -74,7 +84,8 @@ public class KusinMove : MonoBehaviour
     }
     void Update()
     {
-        if(IsLeft)
+        Debug.Log((float)HP / maxHp);
+        if (IsLeft)
         {
             if(transform.localScale.x > 0)
             {
@@ -88,7 +99,7 @@ public class KusinMove : MonoBehaviour
                 gameObject.transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
             }
         }
-        if((float)(HP / maxHp) > 0.3f || UltTime < 0)
+        if((float)((float)HP / (float)maxHp) > 0.3f || UltTime < 0)
         {
             if (patturn < 4)
             {
@@ -231,7 +242,13 @@ public class KusinMove : MonoBehaviour
 
 
     }
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("PlayerAttack"))
+        {
+            GetDamage(1);
+        }
+    }
     int GetRand()
     {
         return Random.Range(-1, 2);

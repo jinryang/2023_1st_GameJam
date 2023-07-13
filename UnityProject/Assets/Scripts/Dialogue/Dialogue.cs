@@ -6,30 +6,70 @@ using UnityEngine.UI;
 
 public class Dialogue : MonoBehaviour
 {
-    [SerializeField] public Text textObj;
+    public GameObject Boss;
+    [SerializeField] Text textObj;
     [SerializeField] string[] EventText;
+    [SerializeField] Image Player;
+    [SerializeField] Image DialogueTarget;
+    public GameObject UI;
 
-    private int num;
+    int playTime = 0;
+
+    public int maxText;
+
+    int now;
+
+    private int num = 0;
 
     public float time;
 
     public bool playingDialoue;
+
+    public bool SpawnBoss;
+
+    public bool Max;
 
     void Start()
     {
         textObj.text = "";
     }
 
-    public void StartTextintg(int n, int team)
+    public void StartTextintg()
     {
-        if (!playingDialoue)
+        if (num == EventText.Length)
         {
-            StartCoroutine(Type(EventText[num - 1]));
+            if (SpawnBoss)
+            {
+                Instantiate(Boss, gameObject.transform.position, Quaternion.identity);
+                GameObject.Find("Player").GetComponent<PlayerAttack>().NewWave();
+                UI.SetActive(false);
+                Destroy(gameObject);
+            }
+            else
+            {
+                UI.SetActive(false);
+                Destroy(gameObject);
+            }
+        }
+        else if (!playingDialoue)
+        {
+            StartCoroutine(Type(EventText[num++], playTime % 2));
         }
     }
 
-    IEnumerator Type(object text)
+    IEnumerator Type(object text, int Who)
     {
+        textObj.text = "";
+        if (Who == 1)
+        {
+            DialogueTarget.color = new Color(0.5f, 0.5f, 0.5f, 1);
+            Player.color = new Color(1, 1, 1, 1);
+        }
+        else
+        {
+            Player.color = new Color(0.5f, 0.5f, 0.5f, 1);
+            DialogueTarget.color = new Color(1, 1, 1, 1);
+        }
         WaitForSeconds waitForSeconds = new WaitForSeconds(time);
         playingDialoue = true;
         string SText = text.ToString();
@@ -40,6 +80,7 @@ public class Dialogue : MonoBehaviour
         }
         textObj.text += "\n";
         playingDialoue = false;
+        playTime++;
     }
 
     void Update()

@@ -15,6 +15,12 @@ EditorBuildSettings:
     path: Assets/Scenes/GameScene.unity
     guid: f94b36b3704adac459a99ab292c7c194
   - enabled: 1
+    path: Assets/Scenes/KSMScene.unity
+    guid: ce55760f45c85744590625f3dd3245f0
+  - enabled: 1
+    path: Assets/Scenes/BOSS_NeedMore.unity
+    guid: a6e1f286ee7825842aff1ea8c2fa93c6
+  - enabled: 1
     path: Assets/Scenes/EndingScene.unity
     guid: a1efee014971aa8449baae14fbe12dd6
   m_configObjects: {}

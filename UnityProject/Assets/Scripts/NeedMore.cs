@@ -16,6 +16,9 @@ public class NeedMore : MonoBehaviour
     bool IsAttaking = false;
 
     bool IsOnWarning = false;
+    GameObject Player;
+
+    float HP;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +27,7 @@ public class NeedMore : MonoBehaviour
         AttackRange2.SetActive(false);
         Blink = GetComponent<Blink>();
         NeedMoreCash();
+        
 
         animator = GetComponent<Animator>();
     }
@@ -37,6 +41,8 @@ public class NeedMore : MonoBehaviour
             RandomSkill();
             Stimer = 0;
         }
+        if(Player == null)
+            Player = GameObject.Find("Player");
     }
 
     void RandomSkill()
@@ -62,8 +68,8 @@ public class NeedMore : MonoBehaviour
     }
     void SummonEagle()
     {
-        Instantiate(eagle);
-        Instantiate(eagle);
+        Player.GetComponent<PlayerAttack>().AddGos(Instantiate(eagle));
+        Player.GetComponent<PlayerAttack>().AddGos(Instantiate(eagle));
     }
     void ALook()
     {
