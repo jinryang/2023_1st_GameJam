@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class NeedAttackRange : MonoBehaviour
 {
-    public GameObject Player;
+    GameObject Player;
     bool IsDamaged = false;
     // Start is called before the first frame update
     void Start()
     {
-        Player = GameObject.FindGameObjectWithTag("Player");
+        Player = GameObject.Find("Player");
     }
 
     // Update is called once per frame
