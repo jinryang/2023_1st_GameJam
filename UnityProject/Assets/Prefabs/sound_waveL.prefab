@@ -69,11 +69,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 949594239293559017, guid: 7b5007b1ee185514a8c62c3bc3b2b9f9, type: 3}
       propertyPath: spread
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 949594239293559017, guid: 7b5007b1ee185514a8c62c3bc3b2b9f9, type: 3}
       propertyPath: LifeTime
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 949594239293559061, guid: 7b5007b1ee185514a8c62c3bc3b2b9f9, type: 3}
       propertyPath: m_Name

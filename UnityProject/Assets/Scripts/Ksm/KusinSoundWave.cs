@@ -19,16 +19,16 @@ public class KusinSoundWave : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
-        {/*
+        {
             playerInfo = collision.GetComponent<PlayerInfo>();
-            playerInfo.stat.HP -= ;*/
+            playerInfo.GetDamage(1);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        speed +=  5 * Time.deltaTime;
+        speed +=  1.5f * Time.deltaTime;
         LifeTime -= Time.deltaTime;
         if(LifeTime < 0)
         {
@@ -36,7 +36,7 @@ public class KusinSoundWave : MonoBehaviour
         }
         if (direc == "left")
         {
-            gameObject.transform.Translate(new Vector3(-1 * speed, 0, 0) * Time.deltaTime, Space.Self);
+            gameObject.transform.Translate(new Vector3(speed, 0, 0) * Time.deltaTime, Space.Self);
             if(transform.localScale.x > 0)
             gameObject.transform.localScale = new Vector3((gameObject.transform.localScale.x + spread * Time.deltaTime), gameObject.transform.localScale.y + spread * Time.deltaTime, gameObject.transform.localScale.z);
             else
