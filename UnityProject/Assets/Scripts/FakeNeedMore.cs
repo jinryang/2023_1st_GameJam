@@ -7,6 +7,8 @@ public class FakeNeedMore : MonoBehaviour
     bool IsBossStart = false;
     float Stimer = 0;
     public GameObject NeedMore;
+    public GameObject Player;
+    GameObject RealNeedMore;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,9 +21,11 @@ public class FakeNeedMore : MonoBehaviour
         if (IsBossStart)
         {
             Stimer += Time.deltaTime;
-            if (Stimer >= 21.0f)
+            if (Stimer >= 1.0f)
             {
-                Instantiate(NeedMore);
+                RealNeedMore = Instantiate(NeedMore);
+                Player.GetComponent<PlayerAttack>().DeleteGos(gameObject);
+                Player.GetComponent<PlayerAttack>().AddGos(RealNeedMore);
                 Destroy(gameObject);
             }
         }

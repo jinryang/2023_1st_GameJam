@@ -8,9 +8,11 @@ public class NeedMore : MonoBehaviour
     public GameObject eagle;
     float Stimer = 0;
     int Rand;
+    Animator animator;
 
     public GameObject AttackRange1;
     public GameObject AttackRange2;
+    bool IsAttaking = false;
 
     bool IsOnWarning = false;
 
@@ -20,21 +22,26 @@ public class NeedMore : MonoBehaviour
         AttackRange1.SetActive(false);
         AttackRange2.SetActive(false);
         NeedMoreCash();
+
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
         Stimer += Time.deltaTime;
-        if(Stimer %10 == 0 && IsChanged)
+        Debug.Log(Stimer);
+        Debug.Log(IsChanged);
+        if (Stimer>=4 && IsChanged)
         {
-            SummonEagle();
+            RandomSkill();
+            Stimer = 0;
         }
     }
 
     void RandomSkill()
     {
-        Rand = Random.Range(0, 3);
+        Rand = Random.Range(0, 2);
         switch(Rand)
         {
             case 0:
@@ -44,7 +51,6 @@ public class NeedMore : MonoBehaviour
                 ALook();
                 break;
         }
-        
     }
 
     void NeedMoreCash()
@@ -60,26 +66,48 @@ public class NeedMore : MonoBehaviour
     }
     void ALook()
     {
-
+        if (!IsAttaking)
+        {
+            animator.SetBool("IsALook", true);
+            ALook_Start();
+            IsAttaking = true;
+        }
     }
     void ALook_Start()
     {
-        for(int i=0; i<9; i++)
-        {
-            ALookWarning();
-        }
+        //for(int i=0; i<4; i++)
+        //{
+            StartCoroutine(ALookWarning());
+            //if (i == 4)
+              //  StartCoroutine(ALookEnd());
+        //}
     }
     void ALook_Attack()
     {
         AttackRange2.SetActive(true);
+        StartCoroutine(ALookEnd());
     }
 
     IEnumerator ALookWarning()
     {
-        yield return new WaitForSeconds(0.2f);
-        AttackRange2.SetActive(IsOnWarning);
-        IsOnWarning = !IsOnWarning;
-    }   
+        for (int i = 0; i < 5; i++)
+        {
+            yield return new WaitForSeconds(0.2f);
+            AttackRange1.SetActive(IsOnWarning);
+            IsOnWarning = !IsOnWarning;
+        }
+        ALook_Attack();
+
+        IsOnWarning = false;
+
+    }
+    IEnumerator ALookEnd()
+    {
+        animator.SetBool("IsALook", false);
+        yield return new WaitForSeconds(1f);
+        AttackRange2.SetActive(false);
+        IsAttaking = false;
+    }
 
 
 }
