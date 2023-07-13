@@ -8,7 +8,6 @@ public class KusinMove : MonoBehaviour
     [SerializeField] GameObject SoundWaveL;
     [SerializeField] GameObject CircleWave;
     [SerializeField] GameObject KusinBullet;
-    [SerializeField] Animator animator;
     [SerializeField] Sprite state;
     [SerializeField] Sprite CircleSpr;
     [SerializeField] Sprite Attack;
