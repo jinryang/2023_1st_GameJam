@@ -738,11 +738,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!1 &833792703 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7115899376050507343, guid: 2765a03849108fe4193fef86b20bb115, type: 3}
-  m_PrefabInstance: {fileID: 872226787}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &870897347
 GameObject:
   m_ObjectHideFlags: 0
@@ -804,11 +799,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7115899376050507346, guid: 2765a03849108fe4193fef86b20bb115, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.77
+      value: 0.42
       objectReference: {fileID: 0}
     - target: {fileID: 7115899376050507346, guid: 2765a03849108fe4193fef86b20bb115, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.81
+      value: 1.08
       objectReference: {fileID: 0}
     - target: {fileID: 7115899376050507346, guid: 2765a03849108fe4193fef86b20bb115, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1672,10 +1667,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 170aecf1c7fbee44e80a9398726b8aa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
-  gos:
-  - {fileID: 833792703}
-=======
   gos: []
 --- !u!1001 &1851016811
 PrefabInstance:
@@ -1734,7 +1725,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: decbdcf90ffb4c14495a157088432e9d, type: 3}
->>>>>>> 3003cd133bee1922bb31e3fb1c76eb475991db16
 --- !u!1 &1936258670
 GameObject:
   m_ObjectHideFlags: 0
