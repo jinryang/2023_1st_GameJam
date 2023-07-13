@@ -8,6 +8,7 @@ namespace Kusin
     {
         public float Speed;
         public float WaitTime;
+        PlayerInfo playerInfo;
         // Start is called before the first frame update
         void Start()
         {
@@ -26,6 +27,8 @@ namespace Kusin
                 else if (collision.CompareTag("Player"))
                 {
                     //АјАн
+                    playerInfo = collision.GetComponent<PlayerInfo>();
+                    playerInfo.GetDamage(1);
                     Destroy(gameObject);
                 }
             }
